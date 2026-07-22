@@ -3,100 +3,171 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy Birthday!</title>
+  <title>🎂 阿君生日遊 | Ghibli Style Travel Guide</title>
   <style>
-    /* 全局樣式重置 */
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
-    body, html {
-      height: 100%;
-      font-family: 'PingFang TC', 'Microsoft JhengHei', sans-serif;
-      overflow-x: hidden;
-    }
-
-    /* 背景設定：請確保圖片檔名與路徑正確 */
     body {
-      background-image: url('bg.jpg'); /* 你的背景圖片檔案名稱 */
+      font-family: 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+      color: #2c3e50;
+      /* 背景設定為你的新圖片 */
+      background-image: url('bg.jpg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
       background-attachment: fixed;
+      min-height: 100vh;
+      padding: 30px 15px;
       display: flex;
       justify-content: center;
-      align-items: center;
+      align-items: flex-start;
     }
 
-    /* 中央文字卡片容器 */
-    .content-card {
-      background: rgba(255, 255, 255, 0.75); /* 75% 半透明白色背景 */
-      backdrop-filter: blur(8px);           /* 毛玻璃模糊效果 */
-      -webkit-backdrop-filter: blur(8px);
-      padding: 40px 30px;
+    /* 主要容器卡片 (毛玻璃半透明質感) */
+    .container {
+      max-width: 700px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       border-radius: 20px;
+      padding: 30px 25px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      margin: 0 auto;
+    }
+
+    /* 頁面標題 */
+    .header {
       text-align: center;
-      max-width: 90%;
-      width: 480px;
-      margin: 20px;
-      animation: fadeIn 1.2s ease-in-out;
+      margin-bottom: 30px;
+      padding-bottom: 15px;
+      border-bottom: 2px dashed #b0c4de;
     }
 
-    /* 標題樣式 */
-    .title {
-      color: #3b5998;
-      font-size: 2.2rem;
+    .header h1 {
+      font-size: 2rem;
+      color: #2b4c7e;
+      margin-bottom: 8px;
+    }
+
+    .header p {
+      font-size: 1rem;
+      color: #666;
+    }
+
+    /* 行程清單樣式 */
+    .schedule-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .schedule-card {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 12px;
+      padding: 18px 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      border-left: 5px solid #6b8e23;
+      transition: transform 0.2s ease;
+    }
+
+    .schedule-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .time-tag {
+      display: inline-block;
+      background: #6b8e23;
+      color: white;
+      font-size: 0.85rem;
       font-weight: bold;
-      margin-bottom: 15px;
-      letter-spacing: 2px;
+      padding: 4px 10px;
+      border-radius: 15px;
+      margin-bottom: 8px;
     }
 
-    /* 內文樣式 */
-    .message {
-      color: #4a4a4a;
-      font-size: 1.1rem;
-      line-height: 1.8;
+    .location-title {
+      font-size: 1.25rem;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 6px;
     }
 
-    /* 淡入動畫 */
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .description {
+      font-size: 0.95rem;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    /* 導航連結 (以簡潔文字連結呈現，非按鈕風格) */
+    .map-link {
+      display: inline-block;
+      margin-top: 8px;
+      color: #3b5998;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: bold;
+    }
+
+    .map-link:hover {
+      text-decoration: underline;
     }
 
     /* 手機版微調 */
     @media (max-width: 480px) {
-      .title {
-        font-size: 1.8rem;
+      body {
+        padding: 15px 10px;
       }
-      .message {
-        font-size: 1rem;
+      .container {
+        padding: 20px 15px;
       }
-      .content-card {
-        padding: 30px 20px;
+      .header h1 {
+        font-size: 1.6rem;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- 中央生日卡片內容（無按鈕） -->
-  <div class="content-card">
-    <h1 class="title">HAPPY BIRTHDAY!</h1>
-    <p class="message">
-      祝 Ahjun 生日快樂！<br>
-      願你新的一年充滿陽光與希望，<br>
-      像大自然一樣自由自在，夢想成真！
-    </p>
+  <div class="container">
+    <!-- 頁頭標題 -->
+    <div class="header">
+      <h1>🎂 阿君生日遊 | Ghibli Style Travel Guide</h1>
+      <p>專為「阿君生日遊」打造的客製化行程表！</p>
+    </div>
+
+    <!-- 行程列表內容 (這裡可以自由修改/新增行程) -->
+    <div class="schedule-list">
+
+      <div class="schedule-card">
+        <span class="time-tag">START</span>
+        <div class="location-title">📍 第一站：美好旅程開啟</div>
+        <p class="description">出發展開溫馨的一天，享受專屬於今天的特別時光！</p>
+      </div>
+
+      <div class="schedule-card">
+        <span class="time-tag">LUNCH</span>
+        <div class="location-title">🍽 美味午餐時間</div>
+        <p class="description">品嚐精心挑選的美食，補充能量繼續接下來的驚喜行程。</p>
+      </div>
+
+      <div class="schedule-card">
+        <span class="time-tag">AFTERNOON</span>
+        <div class="location-title">☕ 愜意下午茶與漫步</div>
+        <p class="description">放慢腳步，在如吉卜力動畫般美麗的風景中留下美好回憶。</p>
+      </div>
+
+      <div class="schedule-card">
+        <span class="time-tag">NIGHT</span>
+        <div class="location-title">🎉 生日慶祝與晚餐</div>
+        <p class="description">獻上最真摯的祝福，祝阿君生日快樂，願所有願望都實現！</p>
+      </div>
+
+    </div>
   </div>
 
 </body>
