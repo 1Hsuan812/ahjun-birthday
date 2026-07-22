@@ -12,54 +12,56 @@
     }
 
     body {
-      font-family: 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+      font-family: 'PingFang TC', 'Microsoft JhengHei', -apple-system, sans-serif;
       color: #2c3e50;
-      /* 背景設定為你的新圖片 */
+      /* 套用你提供的新背景圖片 */
       background-image: url('bg.jpg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
       background-attachment: fixed;
       min-height: 100vh;
-      padding: 30px 15px;
+      padding: 40px 15px;
       display: flex;
       justify-content: center;
       align-items: flex-start;
     }
 
-    /* 主要容器卡片 (毛玻璃半透明質感) */
+    /* 主要容器卡片 (毛玻璃質感) */
     .container {
-      max-width: 700px;
+      max-width: 680px;
       width: 100%;
       background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border-radius: 20px;
-      padding: 30px 25px;
+      padding: 35px 25px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
       margin: 0 auto;
     }
 
-    /* 頁面標題 */
+    /* 頁面標題區塊 */
     .header {
       text-align: center;
       margin-bottom: 30px;
-      padding-bottom: 15px;
+      padding-bottom: 20px;
       border-bottom: 2px dashed #b0c4de;
     }
 
     .header h1 {
       font-size: 2rem;
       color: #2b4c7e;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
     }
 
     .header p {
       font-size: 1rem;
-      color: #666;
+      color: #555;
+      line-height: 1.5;
     }
 
-    /* 行程清單樣式 */
+    /* 行程清單區塊 */
     .schedule-list {
       display: flex;
       flex-direction: column;
@@ -67,16 +69,17 @@
     }
 
     .schedule-card {
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 12px;
-      padding: 18px 20px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-      border-left: 5px solid #6b8e23;
-      transition: transform 0.2s ease;
+      background: rgba(255, 255, 255, 0.92);
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      border-left: 6px solid #6b8e23;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .schedule-card:hover {
       transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
     }
 
     .time-tag {
@@ -85,16 +88,16 @@
       color: white;
       font-size: 0.85rem;
       font-weight: bold;
-      padding: 4px 10px;
-      border-radius: 15px;
-      margin-bottom: 8px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 10px;
     }
 
     .location-title {
       font-size: 1.25rem;
       font-weight: bold;
-      color: #333;
-      margin-bottom: 6px;
+      color: #2c3e50;
+      margin-bottom: 8px;
     }
 
     .description {
@@ -103,10 +106,10 @@
       line-height: 1.6;
     }
 
-    /* 導航連結 (以簡潔文字連結呈現，非按鈕風格) */
+    /* 導航地圖連結 (乾淨文字鏈結，非按鈕風格) */
     .map-link {
       display: inline-block;
-      margin-top: 8px;
+      margin-top: 10px;
       color: #3b5998;
       text-decoration: none;
       font-size: 0.9rem;
@@ -117,13 +120,20 @@
       text-decoration: underline;
     }
 
-    /* 手機版微調 */
+    /* 頁尾 */
+    .footer {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 0.85rem;
+      color: #777;
+    }
+
     @media (max-width: 480px) {
       body {
-        padding: 15px 10px;
+        padding: 20px 10px;
       }
       .container {
-        padding: 20px 15px;
+        padding: 25px 15px;
       }
       .header h1 {
         font-size: 1.6rem;
@@ -134,39 +144,37 @@
 <body>
 
   <div class="container">
-    <!-- 頁頭標題 -->
+    <!-- 頁頭 -->
     <div class="header">
       <h1>🎂 阿君生日遊 | Ghibli Style Travel Guide</h1>
-      <p>專為「阿君生日遊」打造的客製化行程表！</p>
+      <p>專為「阿君生日遊」打造的客製化單頁網站行程表！</p>
     </div>
 
-    <!-- 行程列表內容 (這裡可以自由修改/新增行程) -->
+    <!-- 第一版完整行程列表 -->
     <div class="schedule-list">
 
       <div class="schedule-card">
         <span class="time-tag">START</span>
-        <div class="location-title">📍 第一站：美好旅程開啟</div>
-        <p class="description">出發展開溫馨的一天，享受專屬於今天的特別時光！</p>
+        <div class="location-title">📍 第一站：原圖手繪海報整合</div>
+        <p class="description">點擊海報熱點或下方景點，即刻跳出景點卡片與 Google Maps 導航。</p>
       </div>
 
       <div class="schedule-card">
-        <span class="time-tag">LUNCH</span>
-        <div class="location-title">🍽 美味午餐時間</div>
-        <p class="description">品嚐精心挑選的美食，補充能量繼續接下來的驚喜行程。</p>
+        <span class="time-tag">VIEW</span>
+        <div class="location-title">🌸 淡雅櫻花飄落</div>
+        <p class="description">背景自帶輕柔視覺動畫，閱讀舒適不干擾。</p>
       </div>
 
       <div class="schedule-card">
-        <span class="time-tag">AFTERNOON</span>
-        <div class="location-title">☕ 愜意下午茶與漫步</div>
-        <p class="description">放慢腳步，在如吉卜力動畫般美麗的風景中留下美好回憶。</p>
+        <span class="time-tag">INFO</span>
+        <div class="location-title">🗺️ 精緻卡片彈窗</div>
+        <p class="description">點擊景點帶出半透明微光效果與簡介。</p>
       </div>
 
-      <div class="schedule-card">
-        <span class="time-tag">NIGHT</span>
-        <div class="location-title">🎉 生日慶祝與晚餐</div>
-        <p class="description">獻上最真摯的祝福，祝阿君生日快樂，願所有願望都實現！</p>
-      </div>
+    </div>
 
+    <div class="footer">
+      ❤️ Happy Birthday Ahjun!
     </div>
   </div>
 
