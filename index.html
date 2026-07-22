@@ -20,17 +20,21 @@
       background-repeat: no-repeat;
       background-attachment: fixed;
       min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       padding: 20px 15px;
     }
 
-    /* 3秒歡迎開場畫面 */
+    /* 3秒歡迎開場動畫 */
     #welcome-screen {
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: rgba(255, 248, 240, 0.92);
+      background: rgba(255, 248, 240, 0.94);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       display: flex;
@@ -43,30 +47,35 @@
 
     .welcome-card {
       background: #ffffff;
-      padding: 40px 30px;
+      padding: 35px 25px;
       border-radius: 28px;
       text-align: center;
       box-shadow: 0 15px 35px rgba(217, 119, 127, 0.2);
       border: 3px solid #fce4e4;
       animation: popIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       max-width: 85%;
-      width: 380px;
+      width: 340px;
     }
 
-    .welcome-icon {
-      font-size: 3.5rem;
+    .witch-avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #f29f97;
+      box-shadow: 0 8px 20px rgba(200, 90, 84, 0.2);
       margin-bottom: 15px;
-      animation: floatIcon 2s ease-in-out infinite;
+      animation: floatImg 2.5s ease-in-out infinite;
     }
 
     .welcome-card h2 {
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       color: #c85a54;
       margin-bottom: 8px;
     }
 
     .welcome-card p {
-      font-size: 1rem;
+      font-size: 0.95rem;
       color: #8c7361;
     }
 
@@ -81,51 +90,32 @@
       100% { opacity: 1; transform: scale(1) translateY(0); }
     }
 
-    @keyframes floatIcon {
+    @keyframes floatImg {
       0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
+      50% { transform: translateY(-8px); }
     }
 
-    /* 頂部標誌列 */
+    /* 頂部列 */
     .top-bar {
+      width: 100%;
+      max-width: 500px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      max-width: 800px;
-      margin: 0 auto 20px auto;
+      margin-bottom: 15px;
     }
 
     .brand {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       font-weight: bold;
       color: #d9777f;
-    }
-
-    .top-btns {
-      display: flex;
-      gap: 8px;
-    }
-
-    .poster-btn {
-      background: #ffffff;
-      color: #c85a54;
-      border: 1px solid #f29f97;
+      background: rgba(255, 255, 255, 0.8);
       padding: 6px 14px;
       border-radius: 20px;
-      font-size: 0.85rem;
-      cursor: pointer;
-      font-weight: bold;
-      transition: all 0.2s ease;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-    }
-
-    .poster-btn:hover {
-      background: #ffe3e3;
-      transform: translateY(-1px);
     }
 
     .share-btn {
-      background: #ffe3e3;
+      background: rgba(255, 227, 227, 0.9);
       color: #d9777f;
       border: 1px solid #f2b6b6;
       padding: 6px 14px;
@@ -135,27 +125,28 @@
       font-weight: bold;
     }
 
-    /* 主容器卡片 */
-    .main-card {
-      max-width: 800px;
-      margin: 0 auto;
-      background: rgba(255, 253, 247, 0.88);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border-radius: 24px;
-      padding: 30px 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    /* 首頁主卡片 */
+    .home-card {
+      width: 100%;
+      max-width: 500px;
+      background: rgba(255, 253, 247, 0.92);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 28px;
+      padding: 35px 25px;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.1);
+      text-align: center;
+      border: 2px solid #ffffff;
     }
 
     .header-title {
-      text-align: center;
-      margin-bottom: 25px;
+      margin-bottom: 30px;
     }
 
     .header-title h1 {
       font-size: 2.2rem;
       color: #c85a54;
-      margin-bottom: 5px;
+      margin-bottom: 8px;
     }
 
     .header-title p {
@@ -163,89 +154,89 @@
       font-size: 0.95rem;
     }
 
-    .section-title {
-      font-size: 1.1rem;
-      font-weight: bold;
-      color: #c85a54;
-      margin: 25px 0 15px 0;
+    /* 首頁主要按鈕區 */
+    .home-menu {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .main-btn {
       display: flex;
       align-items: center;
-      gap: 6px;
+      justify-content: center;
+      gap: 10px;
+      background: #ffffff;
+      border: 2px solid #ffd8cc;
+      color: #c85a54;
+      padding: 16px;
+      border-radius: 20px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(200, 90, 84, 0.08);
+      transition: all 0.25s ease;
+      text-decoration: none;
+    }
+
+    .main-btn:hover {
+      transform: translateY(-3px);
+      background: #fff8f6;
+      border-color: #f29f97;
+      box-shadow: 0 8px 20px rgba(200, 90, 84, 0.18);
+    }
+
+    /* 景點導航卡片（點擊後展開） */
+    #nav-section {
+      display: none;
+      margin-top: 25px;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .section-title {
+      font-size: 1rem;
+      font-weight: bold;
+      color: #c85a54;
+      margin-bottom: 15px;
+      text-align: left;
     }
 
     .nav-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      margin-bottom: 30px;
+      gap: 10px;
     }
 
     .nav-item {
       background: #ffffff;
-      border: 2px solid #ffd8cc;
-      border-radius: 16px;
-      padding: 14px 16px;
+      border: 1.5px solid #ffd8cc;
+      border-radius: 14px;
+      padding: 12px 10px;
       display: flex;
       align-items: center;
-      gap: 10px;
+      justify-content: center;
+      gap: 6px;
       text-decoration: none;
       color: #4a3e3d;
       font-weight: bold;
-      font-size: 0.95rem;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+      font-size: 0.88rem;
       transition: all 0.2s ease;
     }
 
     .nav-item:hover {
-      transform: translateY(-2px);
       border-color: #f29f97;
-      box-shadow: 0 4px 12px rgba(200, 90, 84, 0.15);
+      background: #fffafa;
     }
 
-    .checklist-box {
-      border: 2px dashed #f2b6a0;
-      border-radius: 20px;
-      padding: 20px;
-      background: rgba(255, 255, 255, 0.6);
-    }
-
-    .day-badge {
-      background: #e06d53;
-      color: white;
-      font-size: 0.8rem;
-      padding: 4px 12px;
-      border-radius: 12px;
-      display: inline-block;
-      margin-bottom: 12px;
-      font-weight: bold;
-    }
-
-    .check-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 10px;
-      font-size: 0.95rem;
-      color: #55433b;
-      cursor: pointer;
-    }
-
-    .check-item input[type="checkbox"] {
-      width: 18px;
-      height: 18px;
-      accent-color: #e06d53;
-      cursor: pointer;
-    }
-
-    /* 🖼️ 方案 C：海報燈箱彈窗 (Lightbox) */
+    /* 海報燈箱 (Lightbox) */
     #poster-lightbox {
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: rgba(0, 0, 0, 0.8);
-      backdrop-filter: blur(5px);
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(6px);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -262,8 +253,8 @@
 
     .lightbox-content {
       position: relative;
-      max-width: 90%;
-      max-height: 85vh;
+      max-width: 92%;
+      max-height: 88vh;
       border-radius: 16px;
       overflow: hidden;
       box-shadow: 0 10px 40px rgba(0,0,0,0.5);
@@ -271,7 +262,7 @@
 
     .lightbox-content img {
       width: 100%;
-      max-height: 85vh;
+      max-height: 88vh;
       object-fit: contain;
       display: block;
     }
@@ -293,7 +284,7 @@
       justify-content: center;
     }
 
-    /* 櫻花花瓣 */
+    /* 櫻花花瓣效果 */
     .petal {
       position: fixed;
       top: -10px;
@@ -310,7 +301,12 @@
       100% { transform: translateY(100vh) rotate(360deg); opacity: 0.2; }
     }
 
-    @media (max-width: 600px) {
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 480px) {
       .nav-grid {
         grid-template-columns: 1fr;
       }
@@ -319,63 +315,58 @@
 </head>
 <body>
 
-  <!-- 3秒歡迎開場畫面 -->
+  <!-- 3秒開場動畫 (含魔女圖) -->
   <div id="welcome-screen">
     <div class="welcome-card">
-      <div class="welcome-icon">🎁</div>
+      <img src="witch.jpg" alt="魔女阿君" class="witch-avatar">
       <h2>阿君生日快樂！</h2>
-      <p>✨ 專屬生日行程準備中... ✨</p>
+      <p>✨ 專屬生日旅程準備中... ✨</p>
     </div>
   </div>
 
   <!-- 頂部列 -->
   <div class="top-bar">
     <div class="brand">🌸 阿君生日遊</div>
-    <div class="top-btns">
-      <button class="poster-btn" onclick="openLightbox()">🖼️ 查看手繪海報</button>
-      <button class="share-btn" onclick="navigator.clipboard.writeText(window.location.href); alert('已複製旅程連結！');">✨ 分享旅程</button>
-    </div>
+    <button class="share-btn" onclick="navigator.clipboard.writeText(window.location.href); alert('已複製旅程連結！');">✨ 分享旅程</button>
   </div>
 
-  <!-- 主要卡片 -->
-  <div class="main-card">
+  <!-- 首頁主卡片 -->
+  <div class="home-card">
     
     <div class="header-title">
       <h1>🎂 阿君生日遊</h1>
       <p>✨ Happy Birthday & Have a Nice Trip! ✨</p>
     </div>
 
-    <!-- 📍 行程景點快速導航 -->
-    <div class="section-title">📍 行程景點地圖快速導航</div>
-    <div class="nav-grid">
-      <a class="nav-item" href="https://maps.google.com/?q=RedDot+紅點文旅" target="_blank">🏨 RedDot 紅點文旅</a>
-      <a class="nav-item" href="https://maps.google.com/?q=審計新村" target="_blank">📷 審計新村</a>
-      <a class="nav-item" href="https://maps.google.com/?q=空也素麵食" target="_blank">🍜 空也素麵食</a>
-      <a class="nav-item" href="https://maps.google.com/?q=Tiger+City" target="_blank">🛍️ Tiger City</a>
-      <a class="nav-item" href="https://maps.google.com/?q=中華夜市" target="_blank">🌙 中華夜市</a>
-      <a class="nav-item" href="https://maps.google.com/?q=國家漫畫博物館" target="_blank">📚 國家漫畫博物館</a>
-      <a class="nav-item" href="https://maps.google.com/?q=屋馬燒肉" target="_blank">🥩 涮屋馬</a>
-      <a class="nav-item" href="https://maps.google.com/?q=臺中國家歌劇院" target="_blank">🎭 臺中國家歌劇院</a>
+    <!-- 首頁雙按鈕 -->
+    <div class="home-menu">
+      <button class="main-btn" onclick="toggleNav()">
+        📍 各景點快速導航
+      </button>
+
+      <button class="main-btn" onclick="openLightbox()">
+        🖼️ 查看手繪海報
+      </button>
     </div>
 
-    <!-- 📍 行程打卡勾勾清單 -->
-    <div class="section-title">📍 行程打卡打勾勾（進度自動儲存）</div>
-    <div class="checklist-box">
-      <div class="day-badge">Day 1 - 7/24 (五)</div>
-      
-      <label class="check-item"><input type="checkbox"> RedDot 紅點文旅 Check-in</label>
-      <label class="check-item"><input type="checkbox"> 審計新村 逛街拍拍</label>
-      <label class="check-item"><input type="checkbox"> 空也素麵食 享用美食</label>
-      <label class="check-item"><input type="checkbox"> Tiger City 逛街看電影</label>
-      <label class="check-item"><input type="checkbox"> 中華夜市 宵夜時間</label>
-      <label class="check-item"><input type="checkbox"> 國家漫畫博物館 參觀</label>
-      <label class="check-item"><input type="checkbox"> 涮屋馬 慶祝大餐</label>
-      <label class="check-item"><input type="checkbox"> 臺中國家歌劇院 散步賞夜景</label>
+    <!-- 景點導航清單區塊 -->
+    <div id="nav-section">
+      <div class="section-title">📍 點擊景點開啟 Google 地圖：</div>
+      <div class="nav-grid">
+        <a class="nav-item" href="https://maps.google.com/?q=RedDot+紅點文旅" target="_blank">🏨 RedDot 紅點文旅</a>
+        <a class="nav-item" href="https://maps.google.com/?q=審計新村" target="_blank">📷 審計新村</a>
+        <a class="nav-item" href="https://maps.google.com/?q=空也素麵食" target="_blank">🍜 空也素麵食</a>
+        <a class="nav-item" href="https://maps.google.com/?q=Tiger+City" target="_blank">🛍️ Tiger City</a>
+        <a class="nav-item" href="https://maps.google.com/?q=中華夜市" target="_blank">🌙 中華夜市</a>
+        <a class="nav-item" href="https://maps.google.com/?q=國家漫畫博物館" target="_blank">📚 國家漫畫博物館</a>
+        <a class="nav-item" href="https://maps.google.com/?q=屋馬燒肉" target="_blank">🥩 涮屋馬</a>
+        <a class="nav-item" href="https://maps.google.com/?q=臺中國家歌劇院" target="_blank">🎭 臺中國家歌劇院</a>
+      </div>
     </div>
 
   </div>
 
-  <!-- 🖼️ 海報燈箱彈窗 -->
+  <!-- 海報燈箱彈窗 -->
   <div id="poster-lightbox" onclick="closeLightbox()">
     <div class="lightbox-content" onclick="event.stopPropagation()">
       <button class="close-btn" onclick="closeLightbox()">✕</button>
@@ -394,7 +385,18 @@
       }, 3000);
     });
 
-    // 燈箱控制控制邏輯
+    // 切換景點清單顯示/隱藏
+    function toggleNav() {
+      const navSection = document.getElementById('nav-section');
+      if (navSection.style.display === 'block') {
+        navSection.style.display = 'none';
+      } else {
+        navSection.style.display = 'block';
+        navSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    // 燈箱控制邏輯
     function openLightbox() {
       document.getElementById('poster-lightbox').classList.add('show');
     }
