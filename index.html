@@ -27,7 +27,7 @@
       padding: 20px 15px;
     }
 
-    /* 3秒歡迎開場動畫 */
+    /* 3秒歡迎開場動畫 (含魔女圖) */
     #welcome-screen {
       position: fixed;
       top: 0;
@@ -43,6 +43,7 @@
       align-items: center;
       z-index: 9999;
       transition: opacity 0.8s ease, visibility 0.8s ease, transform 0.8s ease;
+      cursor: pointer;
     }
 
     .welcome-card {
@@ -109,9 +110,40 @@
       font-size: 1.1rem;
       font-weight: bold;
       color: #d9777f;
-      background: rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.85);
       padding: 6px 14px;
       border-radius: 20px;
+    }
+
+    .top-right-btns {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .music-btn {
+      background: rgba(255, 255, 255, 0.9);
+      color: #c85a54;
+      border: 1px solid #f2b6b6;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      transition: transform 0.2s ease;
+    }
+
+    .music-btn.playing {
+      animation: spinMusic 4s linear infinite;
+    }
+
+    @keyframes spinMusic {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
     }
 
     .share-btn {
@@ -315,19 +347,25 @@
 </head>
 <body>
 
-  <!-- 3秒開場動畫 (含魔女圖) -->
-  <div id="welcome-screen">
+  <!-- 背景音樂元素 -->
+  <audio id="bgm" src="bgm.mp3" loop></audio>
+
+  <!-- 3秒開場動畫 (點擊可立即進入並播放音樂) -->
+  <div id="welcome-screen" onclick="startApp()">
     <div class="welcome-card">
       <img src="witch.jpg" alt="魔女阿君" class="witch-avatar">
       <h2>阿君生日快樂！</h2>
-      <p>✨ 專屬生日旅程準備中... ✨</p>
+      <p>✨ 點擊任意處開始旅程 ✨</p>
     </div>
   </div>
 
   <!-- 頂部列 -->
   <div class="top-bar">
     <div class="brand">🌸 阿君生日遊</div>
-    <button class="share-btn" onclick="navigator.clipboard.writeText(window.location.href); alert('已複製旅程連結！');">✨ 分享旅程</button>
+    <div class="top-right-btns">
+      <button id="music-toggle" class="music-btn" onclick="toggleMusic()">🎵</button>
+      <button class="share-btn" onclick="navigator.clipboard.writeText(window.location.href); alert('已複製旅程連結！');">✨ 分享</button>
+    </div>
   </div>
 
   <!-- 首頁主卡片 -->
@@ -375,15 +413,58 @@
   </div>
 
   <script>
-    // 3秒開場動畫
+    const bgm = document.getElementById('bgm');
+    const musicBtn = document.getElementById('music-toggle');
+    let isPlaying = false;
+
+    // 啟動頁面與播放音樂
+    function startApp() {
+      const welcomeScreen = document.getElementById('welcome-screen');
+      if (welcomeScreen) {
+        welcomeScreen.classList.add('hide');
+      }
+      playMusic();
+    }
+
+    // 3秒自動關閉開場動畫
     window.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => {
         const welcomeScreen = document.getElementById('welcome-screen');
-        if (welcomeScreen) {
+        if (welcomeScreen && !welcomeScreen.classList.contains('hide')) {
           welcomeScreen.classList.add('hide');
         }
-      }, 3000);
+      }, 3500);
     });
+
+    // 音樂控制邏輯
+    function playMusic() {
+      bgm.play().then(() => {
+        isPlaying = true;
+        musicBtn.classList.add('playing');
+        musicBtn.textContent = '🎵';
+      }).catch(err => {
+        // 如果手機限制自動播放，等待使用者手動點擊
+        console.log("Autoplay prevented:", err);
+      });
+    }
+
+    function toggleMusic() {
+      if (isPlaying) {
+        bgm.pause();
+        isPlaying = false;
+        musicBtn.classList.remove('playing');
+        musicBtn.textContent = '🔇';
+      } else {
+        playMusic();
+      }
+    }
+
+    // 當使用者點擊頁面任何按鈕時，嘗試喚醒音樂播放
+    document.addEventListener('click', () => {
+      if (!isPlaying && bgm.paused) {
+        playMusic();
+      }
+    }, { once: true });
 
     // 切換景點清單顯示/隱藏
     function toggleNav() {
