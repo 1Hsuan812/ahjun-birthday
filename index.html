@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🎂 阿君生日遊 | Ghibli Style Travel Guide</title>
+  <title>🌸 阿君生日遊</title>
   <style>
     * {
       box-sizing: border-box;
@@ -12,171 +12,244 @@
     }
 
     body {
-      font-family: 'PingFang TC', 'Microsoft JhengHei', -apple-system, sans-serif;
-      color: #2c3e50;
-      /* 套用你提供的新背景圖片 */
+      font-family: 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+      color: #5a4636;
+      /* 換上你喜歡的新背景圖 */
       background-image: url('bg.jpg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
       background-attachment: fixed;
       min-height: 100vh;
-      padding: 40px 15px;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
+      padding: 20px 15px;
     }
 
-    /* 主要容器卡片 (毛玻璃質感) */
-    .container {
-      max-width: 680px;
-      width: 100%;
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+    /* 頂部導覽 */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 800px;
+      margin: 0 auto 20px auto;
+    }
+
+    .brand {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #d9777f;
+    }
+
+    .share-btn {
+      background: #ffe3e3;
+      color: #d9777f;
+      border: 1px solid #f2b6b6;
+      padding: 6px 14px;
       border-radius: 20px;
-      padding: 35px 25px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      font-size: 0.85rem;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    /* 主容器 */
+    .main-card {
+      max-width: 800px;
       margin: 0 auto;
+      background: rgba(255, 253, 247, 0.88); /* 半透明米白色，襯托背景 */
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-radius: 24px;
+      padding: 30px 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
     }
 
-    /* 頁面標題區塊 */
-    .header {
+    /* 主標題 */
+    .header-title {
       text-align: center;
-      margin-bottom: 30px;
-      padding-bottom: 20px;
-      border-bottom: 2px dashed #b0c4de;
+      margin-bottom: 25px;
     }
 
-    .header h1 {
-      font-size: 2rem;
-      color: #2b4c7e;
-      margin-bottom: 10px;
-      letter-spacing: 1px;
+    .header-title h1 {
+      font-size: 2.2rem;
+      color: #c85a54;
+      margin-bottom: 5px;
     }
 
-    .header p {
-      font-size: 1rem;
-      color: #555;
-      line-height: 1.5;
-    }
-
-    /* 行程清單區塊 */
-    .schedule-list {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .schedule-card {
-      background: rgba(255, 255, 255, 0.92);
-      border-radius: 14px;
-      padding: 20px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-      border-left: 6px solid #6b8e23;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .schedule-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-    }
-
-    .time-tag {
-      display: inline-block;
-      background: #6b8e23;
-      color: white;
-      font-size: 0.85rem;
-      font-weight: bold;
-      padding: 4px 12px;
-      border-radius: 20px;
-      margin-bottom: 10px;
-    }
-
-    .location-title {
-      font-size: 1.25rem;
-      font-weight: bold;
-      color: #2c3e50;
-      margin-bottom: 8px;
-    }
-
-    .description {
+    .header-title p {
+      color: #8c7361;
       font-size: 0.95rem;
-      color: #555;
-      line-height: 1.6;
     }
 
-    /* 導航地圖連結 (乾淨文字鏈結，非按鈕風格) */
-    .map-link {
-      display: inline-block;
-      margin-top: 10px;
-      color: #3b5998;
+    /* 區塊標題 */
+    .section-title {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #c85a54;
+      margin: 25px 0 15px 0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* 景點快速導航按鈕網格 */
+    .nav-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+
+    .nav-item {
+      background: #ffffff;
+      border: 2px solid #ffd8cc;
+      border-radius: 16px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
       text-decoration: none;
-      font-size: 0.9rem;
+      color: #4a3e3d;
+      font-weight: bold;
+      font-size: 0.95rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+      transition: all 0.2s ease;
+    }
+
+    .nav-item:hover {
+      transform: translateY(-2px);
+      border-color: #f29f97;
+      box-shadow: 0 4px 12px rgba(200, 90, 84, 0.15);
+    }
+
+    /* 行程打勾清單區塊 */
+    .checklist-box {
+      border: 2px dashed #f2b6a0;
+      border-radius: 20px;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.6);
+    }
+
+    .day-badge {
+      background: #e06d53;
+      color: white;
+      font-size: 0.8rem;
+      padding: 4px 12px;
+      border-radius: 12px;
+      display: inline-block;
+      margin-bottom: 12px;
       font-weight: bold;
     }
 
-    .map-link:hover {
-      text-decoration: underline;
+    .check-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+      color: #55433b;
+      cursor: pointer;
     }
 
-    /* 頁尾 */
-    .footer {
-      text-align: center;
-      margin-top: 30px;
-      font-size: 0.85rem;
-      color: #777;
+    .check-item input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: #e06d53;
+      cursor: pointer;
     }
 
-    @media (max-width: 480px) {
-      body {
-        padding: 20px 10px;
+    /* 櫻花飄落動畫花瓣 */
+    .petal {
+      position: fixed;
+      top: -10px;
+      background: #ffc0cb;
+      border-radius: 15px 0 15px 0;
+      opacity: 0.7;
+      pointer-events: none;
+      animation: fall linear infinite;
+      z-index: 999;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.8;
       }
-      .container {
-        padding: 25px 15px;
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0.2;
       }
-      .header h1 {
-        font-size: 1.6rem;
+    }
+
+    @media (max-width: 600px) {
+      .nav-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <!-- 頁頭 -->
-    <div class="header">
-      <h1>🎂 阿君生日遊 | Ghibli Style Travel Guide</h1>
-      <p>專為「阿君生日遊」打造的客製化單頁網站行程表！</p>
-    </div>
-
-    <!-- 第一版完整行程列表 -->
-    <div class="schedule-list">
-
-      <div class="schedule-card">
-        <span class="time-tag">START</span>
-        <div class="location-title">📍 第一站：原圖手繪海報整合</div>
-        <p class="description">點擊海報熱點或下方景點，即刻跳出景點卡片與 Google Maps 導航。</p>
-      </div>
-
-      <div class="schedule-card">
-        <span class="time-tag">VIEW</span>
-        <div class="location-title">🌸 淡雅櫻花飄落</div>
-        <p class="description">背景自帶輕柔視覺動畫，閱讀舒適不干擾。</p>
-      </div>
-
-      <div class="schedule-card">
-        <span class="time-tag">INFO</span>
-        <div class="location-title">🗺️ 精緻卡片彈窗</div>
-        <p class="description">點擊景點帶出半透明微光效果與簡介。</p>
-      </div>
-
-    </div>
-
-    <div class="footer">
-      ❤️ Happy Birthday Ahjun!
-    </div>
+  <!-- 頂部標誌 -->
+  <div class="top-bar">
+    <div class="brand">🌸 阿君生日遊</div>
+    <button class="share-btn" onclick="navigator.clipboard.writeText(window.location.href); alert('已複製旅程連結！');">✨ 分享旅程</button>
   </div>
+
+  <!-- 主要內容卡片 -->
+  <div class="main-card">
+    
+    <div class="header-title">
+      <h1>🎂 阿君生日遊</h1>
+      <p>✨ Happy Birthday & Have a Nice Trip! ✨</p>
+    </div>
+
+    <!-- 📍 行程景點快速導航 (包含原本的所有地點與 Google Maps 導航連結) -->
+    <div class="section-title">📍 行程景點地圖快速導航</div>
+    <div class="nav-grid">
+      <a class="nav-item" href="https://maps.google.com/?q=RedDot+紅點文旅" target="_blank">🏨 RedDot 紅點文旅</a>
+      <a class="nav-item" href="https://maps.google.com/?q=審計新村" target="_blank">📷 審計新村</a>
+      <a class="nav-item" href="https://maps.google.com/?q=空也素麵食" target="_blank">🍜 空也素麵食</a>
+      <a class="nav-item" href="https://maps.google.com/?q=Tiger+City" target="_blank">🛍️ Tiger City</a>
+      <a class="nav-item" href="https://maps.google.com/?q=中華夜市" target="_blank">🌙 中華夜市</a>
+      <a class="nav-item" href="https://maps.google.com/?q=國家漫畫博物館" target="_blank">📚 國家漫畫博物館</a>
+      <a class="nav-item" href="https://maps.google.com/?q=屋馬燒肉" target="_blank">🥩 涮屋馬</a>
+      <a class="nav-item" href="https://maps.google.com/?q=臺中國家歌劇院" target="_blank">🎭 臺中國家歌劇院</a>
+    </div>
+
+    <!-- 📍 行程打卡勾勾清單 -->
+    <div class="section-title">📍 行程打卡打勾勾（進度自動儲存）</div>
+    <div class="checklist-box">
+      <div class="day-badge">Day 1 - 7/24 (五)</div>
+      
+      <label class="check-item"><input type="checkbox"> RedDot 紅點文旅 Check-in</label>
+      <label class="check-item"><input type="checkbox"> 審計新村 逛街拍拍</label>
+      <label class="check-item"><input type="checkbox"> 空也素麵食 享用美食</label>
+      <label class="check-item"><input type="checkbox"> Tiger City 逛街看電影</label>
+      <label class="check-item"><input type="checkbox"> 中華夜市 宵夜時間</label>
+      <label class="check-item"><input type="checkbox"> 國家漫畫博物館 參觀</label>
+      <label class="check-item"><input type="checkbox"> 涮屋馬 慶祝大餐</label>
+      <label class="check-item"><input type="checkbox"> 臺中國家歌劇院 散步賞夜景</label>
+    </div>
+
+  </div>
+
+  <!-- 櫻花特效腳本 -->
+  <script>
+    function createPetal() {
+      const petal = document.createElement('div');
+      petal.classList.add('petal');
+      const size = Math.random() * 8 + 8;
+      petal.style.width = size + 'px';
+      petal.style.height = size + 'px';
+      petal.style.left = Math.random() * 100 + 'vw';
+      petal.style.animationDuration = Math.random() * 3 + 4 + 's';
+      document.body.appendChild(petal);
+
+      setTimeout(() => {
+        petal.remove();
+      }, 7000);
+    }
+    setInterval(createPetal, 400);
+  </script>
 
 </body>
 </html>
