@@ -86,7 +86,7 @@
       50% { transform: translateY(-10px); }
     }
 
-    /* 頂部標誌 */
+    /* 頂部標誌列 */
     .top-bar {
       display: flex;
       justify-content: space-between;
@@ -101,6 +101,29 @@
       color: #d9777f;
     }
 
+    .top-btns {
+      display: flex;
+      gap: 8px;
+    }
+
+    .poster-btn {
+      background: #ffffff;
+      color: #c85a54;
+      border: 1px solid #f29f97;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+
+    .poster-btn:hover {
+      background: #ffe3e3;
+      transform: translateY(-1px);
+    }
+
     .share-btn {
       background: #ffe3e3;
       color: #d9777f;
@@ -112,6 +135,7 @@
       font-weight: bold;
     }
 
+    /* 主容器卡片 */
     .main-card {
       max-width: 800px;
       margin: 0 auto;
@@ -125,7 +149,7 @@
 
     .header-title {
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 25px;
     }
 
     .header-title h1 {
@@ -137,22 +161,6 @@
     .header-title p {
       color: #8c7361;
       font-size: 0.95rem;
-    }
-
-    /* 🖼️ 海報展演區塊（純圖片展示，無按鈕干擾） */
-    .poster-box {
-      width: 100%;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 8px 20px rgba(200, 90, 84, 0.15);
-      border: 3px solid #ffffff;
-      margin-bottom: 25px;
-    }
-
-    .poster-box img {
-      width: 100%;
-      height: auto;
-      display: block;
     }
 
     .section-title {
@@ -229,6 +237,62 @@
       cursor: pointer;
     }
 
+    /* 🖼️ 方案 C：海報燈箱彈窗 (Lightbox) */
+    #poster-lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(5px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    #poster-lightbox.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .lightbox-content {
+      position: relative;
+      max-width: 90%;
+      max-height: 85vh;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    }
+
+    .lightbox-content img {
+      width: 100%;
+      max-height: 85vh;
+      object-fit: contain;
+      display: block;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      border: none;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
     /* 櫻花花瓣 */
     .petal {
       position: fixed;
@@ -264,21 +328,21 @@
     </div>
   </div>
 
+  <!-- 頂部列 -->
   <div class="top-bar">
     <div class="brand">🌸 阿君生日遊</div>
-    <button class="share-btn" onclick="navigator.clipboard.writeText(window.location.href); alert('已複製旅程連結！');">✨ 分享旅程</button>
+    <div class="top-btns">
+      <button class="poster-btn" onclick="openLightbox()">🖼️ 查看手繪海報</button>
+      <button class="share-btn" onclick="navigator.clipboard.writeText(window.location.href); alert('已複製旅程連結！');">✨ 分享旅程</button>
+    </div>
   </div>
 
+  <!-- 主要卡片 -->
   <div class="main-card">
     
     <div class="header-title">
       <h1>🎂 阿君生日遊</h1>
       <p>✨ Happy Birthday & Have a Nice Trip! ✨</p>
-    </div>
-
-    <!-- 🖼️ 海報圖片展演區 (無按鈕蓋在上面) -->
-    <div class="poster-box">
-      <img src="poster.jpg" alt="阿君生日遊手繪海報">
     </div>
 
     <!-- 📍 行程景點快速導航 -->
@@ -311,7 +375,16 @@
 
   </div>
 
+  <!-- 🖼️ 海報燈箱彈窗 -->
+  <div id="poster-lightbox" onclick="closeLightbox()">
+    <div class="lightbox-content" onclick="event.stopPropagation()">
+      <button class="close-btn" onclick="closeLightbox()">✕</button>
+      <img src="poster.jpg" alt="阿君生日遊手繪海報">
+    </div>
+  </div>
+
   <script>
+    // 3秒開場動畫
     window.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => {
         const welcomeScreen = document.getElementById('welcome-screen');
@@ -321,6 +394,16 @@
       }, 3000);
     });
 
+    // 燈箱控制控制邏輯
+    function openLightbox() {
+      document.getElementById('poster-lightbox').classList.add('show');
+    }
+
+    function closeLightbox() {
+      document.getElementById('poster-lightbox').classList.remove('show');
+    }
+
+    // 櫻花花瓣效果
     function createPetal() {
       const petal = document.createElement('div');
       petal.classList.add('petal');
