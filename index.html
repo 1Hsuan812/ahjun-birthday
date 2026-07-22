@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday!</title>
+  <style>
+    /* 全局樣式重置 */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body, html {
+      height: 100%;
+      font-family: 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* 背景設定：請確保圖片檔名與路徑正確 */
+    body {
+      background-image: url('bg.jpg'); /* 你的背景圖片檔案名稱 */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* 中央文字卡片容器 */
+    .content-card {
+      background: rgba(255, 255, 255, 0.75); /* 75% 半透明白色背景 */
+      backdrop-filter: blur(8px);           /* 毛玻璃模糊效果 */
+      -webkit-backdrop-filter: blur(8px);
+      padding: 40px 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      text-align: center;
+      max-width: 90%;
+      width: 480px;
+      margin: 20px;
+      animation: fadeIn 1.2s ease-in-out;
+    }
+
+    /* 標題樣式 */
+    .title {
+      color: #3b5998;
+      font-size: 2.2rem;
+      font-weight: bold;
+      margin-bottom: 15px;
+      letter-spacing: 2px;
+    }
+
+    /* 內文樣式 */
+    .message {
+      color: #4a4a4a;
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    /* 淡入動畫 */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* 手機版微調 */
+    @media (max-width: 480px) {
+      .title {
+        font-size: 1.8rem;
+      }
+      .message {
+        font-size: 1rem;
+      }
+      .content-card {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 中央生日卡片內容（無按鈕） -->
+  <div class="content-card">
+    <h1 class="title">HAPPY BIRTHDAY!</h1>
+    <p class="message">
+      祝 Ahjun 生日快樂！<br>
+      願你新的一年充滿陽光與希望，<br>
+      像大自然一樣自由自在，夢想成真！
+    </p>
+  </div>
+
+</body>
+</html>
