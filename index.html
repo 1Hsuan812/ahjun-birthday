@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎂 阿君生日遊 | Ghibli Style Travel Guide</title>
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- 🌸 櫻花/花瓣飄落容器 -->
+    <div id="petal-container"></div>
+
+    <!-- 頂部導覽與分享列 -->
+    <nav class="top-nav">
+        <div class="nav-title">🌸 阿君生日遊</div>
+        <button class="share-btn" onclick="shareTrip()">
+            <span>📤</span> 分享旅程
+        </button>
+    </nav>
+
+    <div class="main-container">
+        <!-- 標題區 -->
+        <header class="hero-header">
+            <h1 class="main-title">🎂 阿君生日遊</h1>
+            <p class="sub-title">✨ Happy Birthday & Have a Nice Trip! ✨</p>
+        </header>
+
+        <!-- 海報互動區 -->
+        <section class="poster-section">
+            <div class="poster-card">
+                <div class="poster-wrapper" id="posterWrapper">
+                    <img src="poster.jpg" alt="阿君生日遊手繪海報" id="posterImg">
+                    
+                    <!-- 熱點按鈕 Overlay (可調整 top/left 定位對應海報各點) -->
+                    <!-- Day 1 -->
+                    <button class="hotspot" style="top: 19%; left: 63%;" onclick="openModal('reddot')">
+                        <span class="pin">🏨</span>
+                        <span class="label">紅點文旅</span>
+                    </button>
+
+                    <button class="hotspot" style="top: 32%; left: 35%;" onclick="openModal('shenji')">
+                        <span class="pin">📸</span>
+                        <span class="label">審計新村</span>
+                    </button>
+
+                    <button class="hotspot" style="top: 39%; left: 30%;" onclick="openModal('kongye')">
+                        <span class="pin">🍜</span>
+                        <span class="label">空也素麵食</span>
+                    </button>
+
+                    <button class="hotspot" style="top: 45%; left: 65%;" onclick="openModal('tigercity')">
+                        <span class="pin">🛍️</span>
+                        <span class="label">Tiger City</span>
+                    </button>
+
+                    <button class="hotspot" style="top: 52%; left: 60%;" onclick="openModal('nightmarket')">
+                        <span class="pin">🌙</span>
+                        <span class="label">中華夜市</span>
+                    </button>
+
+                    <!-- Day 2 -->
+                    <button class="hotspot" style="top: 68%; left: 60%;" onclick="openModal('comic')">
+                        <span class="pin">📚</span>
+                        <span class="label">國家漫畫博物館</span>
+                    </button>
+
+                    <button class="hotspot" style="top: 73%; left: 60%;" onclick="openModal('uma')">
+                        <span class="pin">🥩</span>
+                        <span class="label">涮屋馬</span>
+                    </button>
+
+                    <button class="hotspot" style="top: 80%; left: 60%;" onclick="openModal('opera')">
+                        <span class="pin">🎭</span>
+                        <span class="label">臺中國家歌劇院</span>
+                    </button>
+                </div>
+                <div class="poster-tip">💡 點擊海報上的景點圖示或下方列表查看地圖與詳細行程</div>
+            </div>
+        </section>
+
+        <!-- 行程快捷點擊清單 -->
+        <section class="quick-list-section">
+            <h2 class="section-title">📍 行程景點地圖快速導航</h2>
+            <div class="spots-grid">
+                <div class="spot-card" onclick="openModal('reddot')">
+                    <span class="spot-icon">🏨</span>
+                    <span class="spot-name">RedDot 紅點文旅</span>
+                </div>
+                <div class="spot-card" onclick="openModal('shenji')">
+                    <span class="spot-icon">📸</span>
+                    <span class="spot-name">審計新村</span>
+                </div>
+                <div class="spot-card" onclick="openModal('kongye')">
+                    <span class="spot-icon">🍜</span>
+                    <span class="spot-name">空也素麵食</span>
+                </div>
+                <div class="spot-card" onclick="openModal('tigercity')">
+                    <span class="spot-icon">🛍️</span>
+                    <span class="spot-name">Tiger City</span>
+                </div>
+                <div class="spot-card" onclick="openModal('nightmarket')">
+                    <span class="spot-icon">🌙</span>
+                    <span class="spot-name">中華夜市</span>
+                </div>
+                <div class="spot-card" onclick="openModal('comic')">
+                    <span class="spot-icon">📚</span>
+                    <span class="spot-name">國家漫畫博物館</span>
+                </div>
+                <div class="spot-card" onclick="openModal('uma')">
+                    <span class="spot-icon">🥩</span>
+                    <span class="spot-name">涮屋馬</span>
+                </div>
+                <div class="spot-card" onclick="openModal('opera')">
+                    <span class="spot-icon">🎭</span>
+                    <span class="spot-name">臺中國家歌劇院</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 今日完成進度 CheckList 卡片 (LocalStorage 記錄) -->
+        <section class="checklist-section">
+            <div class="checklist-card">
+                <h3 class="checklist-title">📍 行程打卡打勾勾 (進度自動儲存)</h3>
+                
+                <div class="day-group">
+                    <div class="day-tag">Day 1 - 7/24 (五)</div>
+                    <label class="check-item"><input type="checkbox" id="chk_reddot" onchange="toggleSpot('reddot')"> <span class="checkmark"></span> RedDot 紅點文旅</label>
+                    <label class="check-item"><input type="checkbox" id="chk_shenji" onchange="toggleSpot('shenji')"> <span class="checkmark"></span> 審計新村</label>
+                    <label class="check-item"><input type="checkbox" id="chk_kongye" onchange="toggleSpot('kongye')"> <span class="checkmark"></span> 空也素麵食</label>
+                    <label class="check-item"><input type="checkbox" id="chk_tigercity" onchange="toggleSpot('tigercity')"> <span class="checkmark"></span> Tiger City</label>
+                    <label class="check-item"><input type="checkbox" id="chk_nightmarket" onchange="toggleSpot('nightmarket')"> <span class="checkmark"></span> 中華夜市</label>
+                </div>
+
+                <div class="day-group">
+                    <div class="day-tag day2">Day 2 - 7/25 (六)</div>
+                    <label class="check-item"><input type="checkbox" id="chk_comic" onchange="toggleSpot('comic')"> <span class="checkmark"></span> 國家漫畫博物館</label>
+                    <label class="check-item"><input type="checkbox" id="chk_uma" onchange="toggleSpot('uma')"> <span class="checkmark"></span> 涮屋馬</label>
+                    <label class="check-item"><input type="checkbox" id="chk_opera" onchange="toggleSpot('opera')"> <span class="checkmark"></span> 臺中國家歌劇院</label>
+                </div>
+            </div>
+        </section>
+
+        <!-- 頁尾 -->
+        <footer>
+            <p>Made with ❤️ for 阿君</p>
+            <p class="footer-sub">Happy Birthday! 🎉</p>
+        </footer>
+    </div>
+
+    <!-- Apple 彈窗動畫 Modal -->
+    <div class="modal-backdrop" id="modalBackdrop" onclick="closeModal(event)">
+        <div class="modal-card" id="modalCard">
+            <button class="modal-close" onclick="closeModalDirect()">&times;</button>
+            <div class="modal-header">
+                <span class="modal-icon" id="mIcon">🏨</span>
+                <h3 class="modal-title" id="mTitle">RedDot 紅點文旅</h3>
+            </div>
+            <div class="modal-body">
+                <p class="modal-time" id="mTime">14:30~15:00 Check-in</p>
+                <p class="modal-desc" id="mDesc">辦理入住，放下行李休息一下！</p>
+            </div>
+            <div class="modal-footer">
+                <a href="#" target="_blank" id="mMapBtn" class="map-link-btn">
+                    🗺️ 打開 Google Maps 導航
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

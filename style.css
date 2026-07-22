@@ -1,0 +1,394 @@
+:root {
+    --bg-color: #FAF4E8;
+    --card-bg: #FFFFFF;
+    --primary-color: #E26D5C;
+    --secondary-color: #386641;
+    --accent-color: #F4A261;
+    --text-color: #4A3E3D;
+    --border-color: #DDA15E;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Zen Maru Gothic', sans-serif;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    overflow-x: hidden;
+    position: relative;
+    min-height: 100vh;
+}
+
+/* 🌸 花瓣飄落動畫 */
+#petal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 99;
+    overflow: hidden;
+}
+
+.petal {
+    position: absolute;
+    background: #ffb7c5;
+    border-radius: 15px 0px 15px 0px;
+    opacity: 0.6;
+    pointer-events: none;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    0% {
+        transform: translate(0, -10px) rotate(0deg);
+        opacity: 0.7;
+    }
+    100% {
+        transform: translate(100px, 105vh) rotate(360deg);
+        opacity: 0.2;
+    }
+}
+
+/* 頂部導覽列 */
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(8px);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    border-bottom: 1px solid rgba(221, 161, 94, 0.3);
+}
+
+.nav-title {
+    font-weight: 900;
+    font-size: 16px;
+    color: var(--primary-color);
+}
+
+.share-btn {
+    background: #FFE8D6;
+    border: 1.5px solid var(--border-color);
+    color: var(--text-color);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.share-btn:hover {
+    background: var(--accent-color);
+    color: white;
+}
+
+.main-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px 15px 40px 15px;
+}
+
+/* Header */
+.hero-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.main-title {
+    font-size: 28px;
+    color: var(--primary-color);
+    margin-bottom: 6px;
+    letter-spacing: 1px;
+}
+
+.sub-title {
+    font-size: 14px;
+    color: #6B705C;
+    font-weight: bold;
+}
+
+/* 海報卡片區 */
+.poster-card {
+    background: white;
+    border: 3px solid #E9D8A6;
+    border-radius: 20px;
+    padding: 10px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+    margin-bottom: 25px;
+    overflow: hidden;
+}
+
+.poster-wrapper {
+    position: relative;
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.poster-wrapper img {
+    width: 100%;
+    display: block;
+    height: auto;
+}
+
+/* 海報熱點 Pin */
+.hotspot {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.92);
+    border: 1.5px solid var(--primary-color);
+    border-radius: 20px;
+    padding: 4px 10px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.2s;
+    z-index: 10;
+}
+
+.hotspot:hover {
+    transform: translate(-50%, -50%) scale(1.15);
+    background: #FFF3E0;
+}
+
+.hotspot .pin {
+    font-size: 12px;
+}
+
+.hotspot .label {
+    font-size: 11px;
+    font-weight: bold;
+    color: var(--text-color);
+    white-space: nowrap;
+}
+
+.poster-tip {
+    text-align: center;
+    font-size: 12px;
+    color: #8D99AE;
+    margin-top: 8px;
+}
+
+/* 快速點擊區 */
+.section-title {
+    font-size: 16px;
+    color: var(--secondary-color);
+    margin-bottom: 12px;
+}
+
+.spots-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.spot-card {
+    background: white;
+    border: 2px solid #E9D8A6;
+    border-radius: 14px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.03);
+}
+
+.spot-card:hover {
+    transform: translateY(-3px) scale(1.02);
+    border-color: var(--accent-color);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+}
+
+.spot-icon {
+    font-size: 20px;
+}
+
+.spot-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+/* 打卡 CheckList 卡片 */
+.checklist-card {
+    background: #FFFDF9;
+    border: 2px dashed var(--border-color);
+    border-radius: 18px;
+    padding: 18px;
+    margin-bottom: 25px;
+}
+
+.checklist-title {
+    font-size: 16px;
+    color: var(--primary-color);
+    margin-bottom: 14px;
+}
+
+.day-group {
+    margin-bottom: 12px;
+}
+
+.day-tag {
+    display: inline-block;
+    background: var(--primary-color);
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 3px 10px;
+    border-radius: 12px;
+    margin-bottom: 8px;
+}
+
+.day-tag.day2 {
+    background: var(--secondary-color);
+}
+
+.check-item {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.check-item input {
+    margin-right: 8px;
+    width: 18px;
+    height: 18px;
+    accent-color: var(--secondary-color);
+    cursor: pointer;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    color: #A5A5A5;
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+.footer-sub {
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+/* 🍏 Apple 質感淡入與縮放 Modal (Modal Animation) */
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.modal-backdrop.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-card {
+    background: #FFFFFF;
+    width: 88%;
+    max-width: 380px;
+    border-radius: 24px;
+    padding: 24px;
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    transform: scale(0.85);
+    transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.modal-backdrop.active .modal-card {
+    transform: scale(1);
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 18px;
+    background: #F0F0F0;
+    border: none;
+    font-size: 20px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    color: #666;
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.modal-icon {
+    font-size: 28px;
+}
+
+.modal-title {
+    font-size: 18px;
+    color: var(--text-color);
+}
+
+.modal-body {
+    margin-bottom: 20px;
+}
+
+.modal-time {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent-color);
+    margin-bottom: 6px;
+}
+
+.modal-desc {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
+}
+
+.map-link-btn {
+    display: block;
+    text-align: center;
+    background: var(--secondary-color);
+    color: white;
+    text-decoration: none;
+    padding: 12px;
+    border-radius: 14px;
+    font-weight: 700;
+    font-size: 14px;
+    box-shadow: 0 4px 10px rgba(56, 102, 65, 0.3);
+    transition: background-color 0.2s;
+}
+
+.map-link-btn:hover {
+    background: #2D5233;
+}
